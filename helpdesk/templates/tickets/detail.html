@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% from "_macros.html" import csrf_field, status_tag, priority_meter %}
+{% block title %}#{{ ticket.number }} {{ ticket.subject }}{% endblock %}
+{% block content %}
+{% set is_agent = g.user.role == 'agent' %}
+<a class="back-link" href="{{ url_for('tickets.index') }}">
+  <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  {{ 'All tickets' if is_agent else 'My tickets' }}
+</a>
+
+<header class="ticket-header">
+  <h1><span class="t-num">#{{ ticket.number }}</span> {{ ticket.subject }}</h1>
+  <p class="sub">{{ ticket.category }}. Raised by {{ 'you' if ticket.customer_id == g.user.id else ticket.customer_name }} on {{ ticket.created_at|dt }}.</p>
+</header>
+
+<ol class="status-track track-{{ ticket.status }}" aria-label="Ticket progress">
+  {% for s in STATUSES %}
+  <li class="{% if loop.index0 < current_step %}is-done{% elif loop.index0 == current_step %}is-current{% endif %}"{% if loop.index0 == current_step %} aria-current="step"{% endif %}>{{ STATUS_LABELS[s] }}</li>
+  {% endfor %}
+</ol>
+
+<div class="ticket-layout">
+  <div class="ticket-main">
+    <section class="thread" aria-label="Conversation">
+      <article class="msg from-customer">
+        <header class="msg-head">
+          <span class="msg-author">{{ ticket.customer_name }}{% if ticket.customer_id == g.user.id %} (you){% endif %}</span>
+          <span class="msg-role">Original request</span>
+          <time datetime="{{ ticket.created_at }}">{{ ticket.created_at|dt }}</time>
+        </header>
+        <div class="msg-body">{{ ticket.description }}</div>
+        {% if attachments %}
+        <ul class="files" aria-label="Attachments">
+          {% for a in attachments %}
+          <li>
+            <a href="{{ url_for('tickets.download', attachment_id=a.id) }}">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 4.5 5.6 9.4a1.4 1.4 0 0 0 2 2l5-5a2.8 2.8 0 0 0-4-4l-5 5a4.2 4.2 0 0 0 6 6l4.4-4.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+              <span class="file-name">{{ a.original_name }}</span>
+              <span class="file-size">{{ a.size_bytes|filesize }}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </article>
+
+      {% for r in replies %}
+      <article class="msg {{ 'from-agent' if r.author_role == 'agent' else 'from-customer' }}"{% if loop.last %} id="latest"{% endif %}>
+        <header class="msg-head">
+          <span class="msg-author">{{ r.author_name }}{% if r.author_id == g.user.id %} (you){% endif %}</span>
+          <span class="msg-role">{{ 'Support' if r.author_role == 'agent' else 'Customer' }}</span>
+          {% if is_agent and r.ai_draft_id %}<span class="ai-tag">AI-assisted</span>{% endif %}
+          <time datetime="{{ r.created_at }}">{{ r.created_at|dt }}</time>
+        </header>
+        <div class="msg-body">{{ r.body }}</div>
+      </article>
+      {% endfor %}
+    </section>
+
+    <form class="reply" id="reply-form" method="post" action="{{ url_for('tickets.reply', number=ticket.number) }}">
+      {{ csrf_field() }}
+      <input type="hidden" name="ai_draft_id" id="ai-draft-id" value="">
+      <div class="reply-head">
+        <label for="reply-body">{{ 'Reply to the customer' if is_agent else 'Add a reply' }}</label>
+        {% if is_agent %}
+        <button type="button" class="btn btn-small" id="ai-draft-btn" data-url="{{ url_for('tickets.ai_draft', number=ticket.number) }}"{% if not groq_enabled %} disabled{% endif %}>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 13l.8-3.2 7.4-7.4a1.4 1.4 0 0 1 2 0l.4.4a1.4 1.4 0 0 1 0 2l-7.4 7.4L3 13z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <span class="btn-label">Draft reply with AI</span>
+        </button>
+        {% endif %}
+      </div>
+      {% if is_agent and not groq_enabled %}
+      <p class="hint">AI drafts are off. Add GROQ_API_KEY to .env and restart the app to turn them on.</p>
+      {% endif %}
+      <p class="ai-note" id="ai-note" role="status" hidden></p>
+      <textarea id="reply-body" name="body" rows="6" maxlength="5000" required
+                placeholder="{{ 'Write your reply. The customer sees it on this page.' if is_agent else 'Add details or answer the support team.' }}"
+                {% if reply_error %}aria-invalid="true" aria-describedby="reply-error"{% endif %}>{{ reply_body }}</textarea>
+      {% if reply_error %}<p class="field-error" id="reply-error">{{ reply_error }}</p>{% endif %}
+      <div class="reply-actions">
+        {% if is_agent %}
+        <label class="inline-select">After sending
+          <select name="then_status">
+            <option value="">keep it {{ STATUS_LABELS[ticket.status]|lower }}</option>
+            {% for s in STATUSES if s != ticket.status %}<option value="{{ s }}">mark it {{ STATUS_LABELS[s]|lower }}</option>{% endfor %}
+          </select>
+        </label>
+        {% elif ticket.status == 'resolved' %}
+        <p class="hint reply-hint">This ticket is resolved. Replying reopens it.</p>
+        {% endif %}
+        <span class="kbd-hint">Ctrl + Enter sends</span>
+        <button class="btn btn-primary" type="submit">Send reply</button>
+      </div>
+    </form>
+  </div>
+
+  <aside class="ticket-side">
+    <section class="panel">
+      <h2>Details</h2>
+      <dl class="facts">
+        <dt>Status</dt><dd>{{ status_tag(ticket.status) }}</dd>
+        <dt>Priority</dt><dd>{{ priority_meter(ticket.priority) }}</dd>
+        <dt>Category</dt><dd>{{ ticket.category }}</dd>
+        <dt>Handled by</dt><dd>{{ ticket.agent_name or 'Not assigned yet' }}</dd>
+        <dt>Updated</dt><dd><time datetime="{{ ticket.updated_at }}">{{ ticket.updated_at|dt }}</time></dd>
+      </dl>
+    </section>
+
+    {% if is_agent %}
+    <section class="panel">
+      <h2>Manage</h2>
+      <form class="stack-sm" method="post" action="{{ url_for('tickets.update_status', number=ticket.number) }}">
+        {{ csrf_field() }}
+        <label class="label" for="status-select">Status</label>
+        <div class="input-row">
+          <select id="status-select" name="status">
+            {% for s in STATUSES %}<option value="{{ s }}" {% if s == ticket.status %}selected{% endif %}>{{ STATUS_LABELS[s] }}</option>{% endfor %}
+          </select>
+          <button class="btn" type="submit">Update</button>
+        </div>
+      </form>
+      <form class="stack-sm manage-assign" method="post" action="{{ url_for('tickets.assign', number=ticket.number) }}"
+            {% if ticket.agent_name and ticket.assigned_agent_id != g.user.id %}data-confirm="Take this ticket over from {{ ticket.agent_name }}?"{% endif %}>
+        {{ csrf_field() }}
+        {% if ticket.assigned_agent_id == g.user.id %}
+          <input type="hidden" name="action" value="unassign">
+          <p class="hint">You're handling this ticket.</p>
+          <button class="btn btn-block" type="submit">Release ticket</button>
+        {% else %}
+          <input type="hidden" name="action" value="assign">
+          {% if ticket.agent_name %}<p class="hint">{{ ticket.agent_name }} is handling this ticket.</p>{% endif %}
+          <button class="btn btn-block" type="submit">{{ 'Take over' if ticket.agent_name else 'Assign to me' }}</button>
+        {% endif %}
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Customer</h2>
+      <dl class="facts">
+        <dt>Name</dt><dd>{{ ticket.customer_name }}</dd>
+        <dt>Email</dt><dd><a href="mailto:{{ ticket.customer_email }}">{{ ticket.customer_email }}</a></dd>
+        <dt>Phone</dt>
+        <dd>{% if ticket.customer_phone %}<a href="tel:{{ ticket.customer_phone|replace(' ', '') }}">{{ ticket.customer_phone }}</a>{% else %}<span class="muted">Not given</span>{% endif %}</dd>
+      </dl>
+    </section>
+    {% endif %}
+  </aside>
+</div>
+{% endblock %}

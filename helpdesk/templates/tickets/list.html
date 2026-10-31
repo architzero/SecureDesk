@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% from "_macros.html" import status_tag, priority_meter, pagination, search_icon %}
+{% block title %}{{ heading }}{% endblock %}
+{% block content %}
+{% set is_agent = g.user.role == 'agent' %}
+<header class="page-head">
+  <div>
+    <h1>{{ heading }}</h1>
+    <p class="sub">
+      {%- if q -%}
+        {{ result.total }} result{{ '' if result.total == 1 else 's' }} for “{{ q }}”
+      {%- else -%}
+        {{ result.total }} ticket{{ '' if result.total == 1 else 's' }}{% if is_agent %} at {{ g.user.company_name }}{% endif %}
+      {%- endif -%}
+    </p>
+  </div>
+  {% if not is_agent %}<a class="btn btn-primary" href="{{ url_for('tickets.new') }}">Raise a ticket</a>{% endif %}
+</header>
+
+<form class="toolbar" method="get" action="{{ url_for('tickets.index') }}" role="search">
+  {% if assigned %}<input type="hidden" name="assigned" value="{{ assigned }}">{% endif %}
+  {% if status %}<input type="hidden" name="status" value="{{ status }}">{% endif %}
+  <label class="search">
+    <span class="visually-hidden">Search tickets</span>
+    {{ search_icon() }}
+    <input type="search" name="q" value="{{ q }}" placeholder="Search words, or a ticket number like #12">
+  </label>
+  <select name="priority" aria-label="Priority" data-autosubmit>
+    <option value="">Any priority</option>
+    {% for p in PRIORITIES|reverse %}<option value="{{ p }}" {% if priority == p %}selected{% endif %}>{{ p|capitalize }} priority</option>{% endfor %}
+  </select>
+  <button class="btn" type="submit">Search</button>
+  {% if q or priority %}<a class="btn btn-quiet" href="{{ url_for('tickets.index', assigned=assigned, status=status) }}">Clear</a>{% endif %}
+</form>
+
+<nav class="tabs" aria-label="Filter by status">
+  {% for tab in tabs %}
+  <a class="tab{% if tab.active %} is-active{% endif %}" href="{{ tab.url }}"{% if tab.active %} aria-current="page"{% endif %}>{{ tab.label }} <span class="count">{{ tab.count }}</span></a>
+  {% endfor %}
+</nav>
+
+{% if result.tickets %}
+<div class="ticket-table{% if is_agent %} has-agent{% endif %}">
+  <div class="ticket-head" aria-hidden="true">
+    <span>Ticket</span><span>Priority</span><span>Status</span>{% if is_agent %}<span>Handled by</span>{% endif %}<span>Updated</span>
+  </div>
+  <ul class="ticket-list">
+    {% for t in result.tickets %}
+    <li>
+      <a class="ticket-row s-{{ t.status }}" href="{{ url_for('tickets.detail', number=t.number) }}">
+        <span class="t-main">
+          <span class="t-title"><span class="t-num">#{{ t.number }}</span><span class="t-subject">{{ t.subject }}</span></span>
+          <span class="t-meta">{{ t.category }}{% if is_agent %}, from {{ t.customer_name }}{% endif %}{% if t.reply_count %}, {{ t.reply_count }} repl{{ 'y' if t.reply_count == 1 else 'ies' }}{% endif %}</span>
+        </span>
+        <span class="t-priority">{{ priority_meter(t.priority) }}</span>
+        <span class="t-status">{{ status_tag(t.status) }}</span>
+        {% if is_agent %}<span class="t-agent{% if not t.agent_name %} is-none{% endif %}">{{ t.agent_name or 'Unassigned' }}</span>{% endif %}
+        <span class="t-updated"><time datetime="{{ t.updated_at }}" title="{{ t.updated_at|dt }}">{{ t.updated_at|ago }}</time></span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{{ pagination(result.page, result.pages) }}
+{% else %}
+<div class="empty">
+  {% if q or priority %}
+    <h2>No tickets match this search</h2>
+    <p>Try fewer or different words, or search by ticket number, like #12.</p>
+    <a class="btn" href="{{ url_for('tickets.index', assigned=assigned, status=status) }}">Clear search</a>
+  {% elif not is_agent and not status %}
+    <h2>No tickets yet</h2>
+    <p>When something isn't working, raise a ticket and the {{ g.user.company_name }} team will reply here.</p>
+    <a class="btn btn-primary" href="{{ url_for('tickets.new') }}">Raise a ticket</a>
+  {% else %}
+    <h2>Nothing in this view</h2>
+    <p>No tickets match these filters right now.</p>
+  {% endif %}
+</div>
+{% endif %}
+{% endblock %}

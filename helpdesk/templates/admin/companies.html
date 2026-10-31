@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% from "_macros.html" import csrf_field, field_error, invalid %}
+{% block title %}Companies{% endblock %}
+{% block content %}
+<header class="page-head">
+  <div>
+    <h1>Companies</h1>
+    <p class="sub">Customers join a company by signing up with its code.</p>
+  </div>
+</header>
+
+<div class="split">
+  <div>
+    {% if companies %}
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Company</th><th>Signup code</th><th class="num">Agents</th><th class="num">Customers</th><th class="num">Unresolved tickets</th><th>Added</th></tr>
+        </thead>
+        <tbody>
+          {% for c in companies %}
+          <tr>
+            <td data-label="Company"><a class="strong" href="{{ url_for('admin.users', company=c.id) }}">{{ c.name }}</a></td>
+            <td data-label="Signup code"><span class="code">{{ c.code }}</span></td>
+            <td class="num" data-label="Agents">{{ c.agents }}</td>
+            <td class="num" data-label="Customers">{{ c.customers }}</td>
+            <td class="num" data-label="Unresolved">{{ c.open_tickets }}</td>
+            <td data-label="Added">{{ c.created_at|dt('%-d %b %Y') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty">
+      <h2>No companies yet</h2>
+      <p>Add the first company with the form. Then create its agents on the Users page.</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <section class="panel">
+    <h2>Add a company</h2>
+    <form class="form" method="post" action="{{ url_for('admin.create_company') }}" novalidate>
+      {{ csrf_field() }}
+      <div class="field">
+        <label for="name">Company name</label>
+        <input id="name" name="name" type="text" maxlength="100" required value="{{ form.name }}" {{ invalid(errors, 'name') }}>
+        {{ field_error(errors, 'name') }}
+      </div>
+      <div class="field">
+        <label for="code">Signup code <span class="optional">(optional)</span></label>
+        <input id="code" name="code" type="text" maxlength="20" autocapitalize="characters" value="{{ form.code }}" placeholder="Leave blank to generate one" {{ invalid(errors, 'code') }}>
+        {% if errors.get('code') %}{{ field_error(errors, 'code') }}{% else %}<p class="hint">4 to 20 capital letters, numbers or hyphens.</p>{% endif %}
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Add company</button>
+    </form>
+  </section>
+</div>
+{% endblock %}

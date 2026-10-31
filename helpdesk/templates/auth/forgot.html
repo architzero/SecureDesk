@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "_macros.html" import csrf_field %}
+{% block title %}Reset your password{% endblock %}
+{% block content %}
+<div class="stub">
+  <div class="stub-head">
+    <a class="brand" href="{{ url_for('auth.login') }}">{% include "_logo.svg" %}HelpDesk</a>
+    <h1>Reset your password</h1>
+    <p class="sub">Enter your account email and we'll create a reset link.</p>
+  </div>
+  <div class="stub-cut" aria-hidden="true"></div>
+  {% if sent %}
+  <div class="stub-body stack">
+    <p>If an account exists for that email, a reset link is ready. It works for 30 minutes.</p>
+    <p class="hint">This local setup doesn't send email. Look in the terminal running HelpDesk for the link.</p>
+    <a class="btn btn-block" href="{{ url_for('auth.login') }}">Back to sign in</a>
+  </div>
+  {% else %}
+  <form class="stub-body form" method="post">
+    {{ csrf_field() }}
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required autofocus>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Create reset link</button>
+  </form>
+  <p class="stub-foot"><a href="{{ url_for('auth.login') }}">Back to sign in</a></p>
+  {% endif %}
+</div>
+{% endblock %}

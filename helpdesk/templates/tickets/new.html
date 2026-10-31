@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% from "_macros.html" import csrf_field, field_error, invalid, priority_meter %}
+{% block title %}Raise a ticket{% endblock %}
+{% block content %}
+<header class="page-head">
+  <div>
+    <h1>Raise a ticket</h1>
+    <p class="sub">The {{ g.user.company_name }} support team will reply on the ticket page.</p>
+  </div>
+</header>
+
+<form class="panel form form-panel" method="post" enctype="multipart/form-data" novalidate>
+  {{ csrf_field() }}
+  {% if errors.get('_form') %}
+  <p class="form-error" role="alert">{{ errors['_form'] }}</p>
+  {% elif errors %}
+  <p class="form-error" role="alert">Some fields need attention. Check the messages below.</p>
+  {% endif %}
+
+  <div class="field">
+    <label for="subject">Subject</label>
+    <input id="subject" name="subject" type="text" maxlength="150" required value="{{ form.subject }}" placeholder="For example: Internet drops every evening" {{ invalid(errors, 'subject') }}>
+    {{ field_error(errors, 'subject') }}
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <label for="category">Category</label>
+      <select id="category" name="category" {{ invalid(errors, 'category') }}>
+        {% for c in CATEGORIES %}<option value="{{ c }}" {% if form.category == c %}selected{% endif %}>{{ c }}</option>{% endfor %}
+      </select>
+      {{ field_error(errors, 'category') }}
+    </div>
+    <fieldset class="field">
+      <legend>Priority</legend>
+      <div class="segmented">
+        {% for p in PRIORITIES %}
+        <label class="segment">
+          <input type="radio" name="priority" value="{{ p }}" {% if form.priority == p %}checked{% endif %}>
+          <span>{{ priority_meter(p) }}</span>
+        </label>
+        {% endfor %}
+      </div>
+      {{ field_error(errors, 'priority') }}
+    </fieldset>
+  </div>
+
+  <div class="field">
+    <label for="description">What's happening?</label>
+    <textarea id="description" name="description" rows="8" maxlength="5000" required {{ invalid(errors, 'description') }}>{{ form.description }}</textarea>
+    <p class="hint">Say what you tried, when it started and any reference numbers. Never share passwords, PINs or OTPs.</p>
+    {{ field_error(errors, 'description') }}
+  </div>
+
+  <div class="field">
+    <label for="attachment">Attachment <span class="optional">(optional)</span></label>
+    <div class="file-field">
+      <input id="attachment" name="attachment" type="file" accept="{{ UPLOAD_ACCEPT }}"
+             data-max-bytes="{{ config.MAX_UPLOAD_MB * 1048576 }}" data-status="attachment-status" {{ invalid(errors, 'attachment') }}>
+      <p class="hint" id="attachment-status">{{ UPLOAD_TYPES_TEXT }}. Up to {{ config.MAX_UPLOAD_MB }} MB.</p>
+    </div>
+    {{ field_error(errors, 'attachment') }}
+  </div>
+
+  <div class="form-actions">
+    <a class="btn btn-quiet" href="{{ url_for('tickets.index') }}">Cancel</a>
+    <button class="btn btn-primary" type="submit">Raise ticket</button>
+  </div>
+</form>
+{% endblock %}

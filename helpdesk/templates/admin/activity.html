@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% from "_macros.html" import pagination, search_icon %}
+{% block title %}Activity log{% endblock %}
+{% block content %}
+<header class="page-head">
+  <div>
+    <h1>Activity log</h1>
+    <p class="sub">Sign-ins and ticket actions across every company, newest first. Times are in {{ config.DISPLAY_TIMEZONE }}.</p>
+  </div>
+</header>
+
+<form class="toolbar" method="get" action="{{ url_for('admin.activity') }}" role="search">
+  <label class="search">
+    <span class="visually-hidden">Search the activity log</span>
+    {{ search_icon() }}
+    <input type="search" name="q" value="{{ filters.q }}" placeholder="Search name, email, IP or ticket number">
+  </label>
+  <select name="action" aria-label="Action" data-autosubmit>
+    <option value="">All actions</option>
+    {% for key, label in ACTION_LABELS.items() %}<option value="{{ key }}" {% if filters.action == key %}selected{% endif %}>{{ label }}</option>{% endfor %}
+  </select>
+  <select name="company" aria-label="Company" data-autosubmit>
+    <option value="">All companies</option>
+    {% for c in companies %}<option value="{{ c.id }}" {% if filters.company == c.id %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+  </select>
+  <button class="btn" type="submit">Filter</button>
+  {% if filters.q or filters.action or filters.company %}<a class="btn btn-quiet" href="{{ url_for('admin.activity') }}">Clear</a>{% endif %}
+</form>
+
+{% if entries %}
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr><th>When</th><th>Who</th><th>Action</th><th>Details</th><th>Company</th><th>IP address</th></tr>
+    </thead>
+    <tbody>
+      {% for a in entries %}
+      <tr{% if a.action in WARNING_ACTIONS %} class="is-warning"{% endif %}>
+        <td data-label="When"><time datetime="{{ a.created_at }}">{{ a.created_at|dt }}</time></td>
+        <td data-label="Who">
+          {% if a.user_name %}<span class="strong">{{ a.user_name }}</span><span class="muted block">{{ ROLE_LABELS.get(a.user_role, '') }}</span>{% else %}<span class="muted">No account</span>{% endif %}
+        </td>
+        <td data-label="Action">{{ ACTION_LABELS.get(a.action, a.action) }}</td>
+        <td data-label="Details">{{ a.details or '' }}</td>
+        <td data-label="Company">{{ a.company_name or '–' }}</td>
+        <td data-label="IP address" class="nowrap">{{ a.ip_address or '' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{{ pagination(page, pages) }}
+{% else %}
+<div class="empty">
+  <h2>No activity matches</h2>
+  <p>Try a different search, or clear the filters.</p>
+</div>
+{% endif %}
+{% endblock %}

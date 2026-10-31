@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from "_macros.html" import csrf_field, field_error, invalid %}
+{% block title %}Create an account{% endblock %}
+{% block content %}
+<div class="stub stub-wide">
+  <div class="stub-head">
+    <a class="brand" href="{{ url_for('auth.login') }}">{% include "_logo.svg" %}HelpDesk</a>
+    <h1>Create a customer account</h1>
+    <p class="sub">You'll need the company code from the business you want help from.</p>
+  </div>
+  <div class="stub-cut" aria-hidden="true"></div>
+  <form class="stub-body form" method="post" novalidate>
+    {{ csrf_field() }}
+    {% if errors %}<p class="form-error" role="alert">Some fields need attention. Check the messages below.</p>{% endif %}
+
+    <div class="field">
+      <label for="company_code">Company code</label>
+      <input id="company_code" name="company_code" type="text" value="{{ form.company_code }}" autocomplete="off" autocapitalize="characters" placeholder="For example ACME-2026" required {{ invalid(errors, 'company_code') }}>
+      {{ field_error(errors, 'company_code') }}
+    </div>
+    <div class="field">
+      <label for="name">Full name</label>
+      <input id="name" name="name" type="text" value="{{ form.name }}" autocomplete="name" required {{ invalid(errors, 'name') }}>
+      {{ field_error(errors, 'name') }}
+    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="{{ form.email }}" autocomplete="email" required {{ invalid(errors, 'email') }}>
+        {{ field_error(errors, 'email') }}
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" value="{{ form.phone }}" autocomplete="tel" placeholder="+91 98765 43210" required {{ invalid(errors, 'phone') }}>
+        {{ field_error(errors, 'phone') }}
+      </div>
+    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required {{ invalid(errors, 'password') }}>
+        {% if errors.get('password') %}{{ field_error(errors, 'password') }}{% else %}<p class="hint">At least 8 characters, with a letter and a number.</p>{% endif %}
+      </div>
+      <div class="field">
+        <label for="confirm_password">Repeat password</label>
+        <input id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" required {{ invalid(errors, 'confirm_password') }}>
+        {{ field_error(errors, 'confirm_password') }}
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Create account</button>
+  </form>
+  <p class="stub-foot">Already have an account? <a href="{{ url_for('auth.login') }}">Sign in</a></p>
+</div>
+{% endblock %}

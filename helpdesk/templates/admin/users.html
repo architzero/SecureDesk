@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% from "_macros.html" import csrf_field, field_error, invalid, pagination, search_icon %}
+{% block title %}Users{% endblock %}
+{% block content %}
+{% set selected_company = form.company_id or filters.company %}
+<header class="page-head">
+  <div>
+    <h1>Users</h1>
+    <p class="sub">{{ total }} account{{ '' if total == 1 else 's' }}{% if filters.q or filters.role or filters.company %} match these filters{% endif %}.</p>
+  </div>
+</header>
+
+<div class="split">
+  <div>
+    <form class="toolbar" method="get" action="{{ url_for('admin.users') }}" role="search">
+      <label class="search">
+        <span class="visually-hidden">Search users</span>
+        {{ search_icon() }}
+        <input type="search" name="q" value="{{ filters.q }}" placeholder="Search name or email">
+      </label>
+      <select name="role" aria-label="Role" data-autosubmit>
+        <option value="">All roles</option>
+        {% for key, label in ROLE_LABELS.items() %}<option value="{{ key }}" {% if filters.role == key %}selected{% endif %}>{{ label }}s</option>{% endfor %}
+      </select>
+      <select name="company" aria-label="Company" data-autosubmit>
+        <option value="">All companies</option>
+        {% for c in companies %}<option value="{{ c.id }}" {% if filters.company == c.id %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+      </select>
+      <button class="btn" type="submit">Filter</button>
+      {% if filters.q or filters.role or filters.company %}<a class="btn btn-quiet" href="{{ url_for('admin.users') }}">Clear</a>{% endif %}
+    </form>
+
+    {% if users %}
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Person</th><th>Role</th><th>Company</th><th>Status</th><th>Last sign-in</th><th><span class="visually-hidden">Actions</span></th></tr>
+        </thead>
+        <tbody>
+          {% for u in users %}
+          <tr>
+            <td data-label="Person"><span class="strong">{{ u.name }}</span><span class="muted block">{{ u.email }}</span></td>
+            <td data-label="Role">{{ ROLE_LABELS[u.role] }}</td>
+            <td data-label="Company">{{ u.company_name or '–' }}</td>
+            <td data-label="Status"><span class="state {{ 'state-on' if u.is_active else 'state-off' }}">{{ 'Active' if u.is_active else 'Deactivated' }}</span></td>
+            <td data-label="Last sign-in">
+              {% if u.last_login_at %}<time datetime="{{ u.last_login_at }}" title="{{ u.last_login_at|dt }}">{{ u.last_login_at|ago }}</time>{% else %}<span class="muted">Never</span>{% endif %}
+            </td>
+            <td class="actions">
+              {% if u.id != g.user.id %}
+              <form method="post" action="{{ url_for('admin.toggle_user', user_id=u.id) }}"{% if u.is_active %} data-confirm="Deactivate {{ u.name }}? They'll be signed out and can't sign in until you reactivate them."{% endif %}>
+                {{ csrf_field() }}
+                <input type="hidden" name="next" value="{{ request.full_path }}">
+                <button class="btn btn-small{% if u.is_active %} btn-danger{% endif %}" type="submit">{{ 'Deactivate' if u.is_active else 'Reactivate' }}</button>
+              </form>
+              {% else %}
+              <span class="muted">You</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {{ pagination(page, pages) }}
+    {% else %}
+    <div class="empty">
+      <h2>No accounts match</h2>
+      <p>Try a different name or email, or clear the filters.</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <section class="panel">
+    <h2>Create an agent account</h2>
+    <p class="hint panel-intro">Agents see and answer every ticket for their company.</p>
+    {% if not companies %}
+    <p>Add a company first, then come back to create its agents.</p>
+    {% else %}
+    <form class="form" method="post" action="{{ url_for('admin.create_agent') }}" novalidate>
+      {{ csrf_field() }}
+      <div class="field">
+        <label for="company_id">Company</label>
+        <select id="company_id" name="company_id" required {{ invalid(errors, 'company_id') }}>
+          <option value="">Choose a company</option>
+          {% for c in companies %}<option value="{{ c.id }}" {% if selected_company == c.id %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+        </select>
+        {{ field_error(errors, 'company_id') }}
+      </div>
+      <div class="field">
+        <label for="agent-name">Full name</label>
+        <input id="agent-name" name="name" type="text" required value="{{ form.name }}" {{ invalid(errors, 'name') }}>
+        {{ field_error(errors, 'name') }}
+      </div>
+      <div class="field">
+        <label for="agent-email">Work email</label>
+        <input id="agent-email" name="email" type="email" required value="{{ form.email }}" {{ invalid(errors, 'email') }}>
+        {{ field_error(errors, 'email') }}
+      </div>
+      <div class="field">
+        <label for="agent-phone">Phone <span class="optional">(optional)</span></label>
+        <input id="agent-phone" name="phone" type="tel" value="{{ form.phone }}" {{ invalid(errors, 'phone') }}>
+        {{ field_error(errors, 'phone') }}
+      </div>
+      <div class="field">
+        <label for="agent-password">First password</label>
+        <input id="agent-password" name="password" type="password" autocomplete="new-password" required {{ invalid(errors, 'password') }}>
+        {% if errors.get('password') %}{{ field_error(errors, 'password') }}{% else %}<p class="hint">At least 8 characters, with a letter and a number. Share it privately.</p>{% endif %}
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Create agent</button>
+    </form>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

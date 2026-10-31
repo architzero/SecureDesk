@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% from "_macros.html" import csrf_field, field_error, invalid %}
+{% block title %}Choose a new password{% endblock %}
+{% block content %}
+<div class="stub">
+  <div class="stub-head">
+    <a class="brand" href="{{ url_for('auth.login') }}">{% include "_logo.svg" %}HelpDesk</a>
+    <h1>{{ 'Link expired' if invalid else 'Choose a new password' }}</h1>
+  </div>
+  <div class="stub-cut" aria-hidden="true"></div>
+  {% if invalid %}
+  <div class="stub-body stack">
+    <p>This reset link has expired or was already used. Request a new one to continue.</p>
+    <a class="btn btn-primary btn-block" href="{{ url_for('auth.forgot_password') }}">Request a new link</a>
+  </div>
+  {% else %}
+  <form class="stub-body form" method="post" action="{{ url_for('auth.reset_password', token=token) }}" novalidate>
+    {{ csrf_field() }}
+    <div class="field">
+      <label for="password">New password</label>
+      <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required autofocus {{ invalid(errors, 'password') }}>
+      {% if errors.get('password') %}{{ field_error(errors, 'password') }}{% else %}<p class="hint">At least 8 characters, with a letter and a number.</p>{% endif %}
+    </div>
+    <div class="field">
+      <label for="confirm_password">Repeat new password</label>
+      <input id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" required {{ invalid(errors, 'confirm_password') }}>
+      {{ field_error(errors, 'confirm_password') }}
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Save new password</button>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

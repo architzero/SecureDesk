@@ -1,0 +1,33 @@
+{% macro csrf_field() -%}
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+{%- endmacro %}
+
+{% macro status_tag(status) -%}
+<span class="status status-{{ status }}"><span class="status-mark" aria-hidden="true"></span>{{ STATUS_LABELS.get(status, status) }}</span>
+{%- endmacro %}
+
+{% macro priority_meter(priority) -%}
+<span class="prio prio-{{ priority }}"><span class="prio-bars" aria-hidden="true"><i></i><i></i><i></i></span>{{ priority|capitalize }}</span>
+{%- endmacro %}
+
+{% macro field_error(errors, name) -%}
+{% if errors and errors.get(name) %}<p class="field-error" id="{{ name }}-error">{{ errors[name] }}</p>{% endif %}
+{%- endmacro %}
+
+{% macro invalid(errors, name) -%}
+{% if errors and errors.get(name) %}aria-invalid="true" aria-describedby="{{ name }}-error"{% endif %}
+{%- endmacro %}
+
+{% macro search_icon() -%}
+<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m10.4 10.4 3.4 3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+{%- endmacro %}
+
+{% macro pagination(page, pages) -%}
+{% if pages > 1 %}
+<nav class="pager" aria-label="Pages">
+  {% if page > 1 %}<a class="btn btn-small" href="{{ page_url(page - 1) }}" rel="prev">Previous</a>{% else %}<span class="btn btn-small" aria-disabled="true">Previous</span>{% endif %}
+  <span class="pager-pos">Page {{ page }} of {{ pages }}</span>
+  {% if page < pages %}<a class="btn btn-small" href="{{ page_url(page + 1) }}" rel="next">Next</a>{% else %}<span class="btn btn-small" aria-disabled="true">Next</span>{% endif %}
+</nav>
+{% endif %}
+{%- endmacro %}
