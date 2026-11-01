@@ -1,0 +1,13 @@
+{
+  "127.0.0.1": {
+    "/": {
+      "session": {
+        "value": "eyJfY3NyZl90b2tlbiI6IkRONTVzY3pjVnM5Zi1SZ1pranRMak1XenR4OFdFMGlSeXVWUmgyanVvX0EifQ.audINg.OgoLDlenbKnIjCqdDbpE5Kz71Hk",
+        "expires": null,
+        "secure": false,
+        "port": null,
+        "version": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wapiti scan report</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+    <div id="page">
+        <header style="text-align: center">
+        <h2 class="title" style="text-align: center">Wapiti vulnerability report</h2>
+        <h3>Target: http://127.0.0.1:5000/</h3>
+        <p>Date of the scan: Sun, 01 Nov 2026 14:10:51 +0000. Scope of the scan: folder. Crawled pages: 29</p>
+        </header>
+        <hr />
+
+        <h4>Summary</h4>
+        <table class="summary-table" style="background: url('logo_clear.png') no-repeat center;">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Number of vulnerabilities found</th>
+                </tr>
+            </thead>
+            <tbody id="summary">
+                    <tr>
+                        <td class="small">
+                            Backup file
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Cleartext Submission of Password
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Weak credentials
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            CRLF Injection
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Content Security Policy Configuration
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Cross Site Request Forgery
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            CVE-2024-55591
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Potentially dangerous file
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Command execution
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Path Traversal
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web application framework
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web server
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Htaccess Bypass
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTML Injection
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Clickjacking Protection
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTTP Strict Transport Security (HSTS)
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            MIME Type Confusion
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HttpOnly Flag cookie
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Unencrypted Channels
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Inconsistent Redirection
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Information Disclosure - Full Path
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            LDAP Injection
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Log4Shell
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            NS takeover
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Open Redirect
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Reflected Cross Site Scripting
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Secure Flag cookie
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Spring4Shell
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            SQL Injection
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            TLS/SSL misconfigurations
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Server Side Request Forgery
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stack Trace Disclosure
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stored HTML Injection
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stored Cross Site Scripting
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Subdomain takeover
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Blind SQL Injection
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Unrestricted File Upload
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Vulnerable software
+                        </td>
+                        <td class="small text-centered">
+                            0
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            <a href="#anom_type_0">Internal Server Error</a>
+                        </td>
+                        <td class="small text-centered">12</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Resource consumption
+                        </td>
+                        <td class="small text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Review Webserver Metafiles for Information Leakage
+                        </td>
+                        <td class="small text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web technology
+                        </td>
+                        <td class="small text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            <a href="#addition_type_2">HTTP Methods</a>
+                        </td>
+                        <td class="small text-centered">16</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            TLS/SSL misconfigurations
+                        </td>
+                        <td class="small text-centered">0</td>
+                    </tr>
+            </tbody>
+        </table>
+        <hr />
+        <div id="details">
+                <h3 id="anom_type_0">Internal Server Error</h3>
+                <dl>
+                    <dt>Description</dt>
+                    <dd>An error occurred on the server&#39;s side, preventing it to process the request. It may be the sign of a vulnerability.</dd>
+                </dl>
+
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/2/assign</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-0-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-0-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-0-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-0-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-0-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-0-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/2/assign HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/2
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 83
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=assign
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-0-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/2/assign&#34; -e &#34;http://127.0.0.1:5000/tickets/2&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=assign&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-0-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/1/assign</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-1-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-1-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-1-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-1-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-1-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-1-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/1/assign HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/1
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 85
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=unassign
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-1-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/1/assign&#34; -e &#34;http://127.0.0.1:5000/tickets/1&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=unassign&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-1-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /account</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-2-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-2-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-2-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-2-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-2-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-2-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /account HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/account
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 166
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=change_password&amp;current_password=Letm3in_&amp;new_password=Letm3in_&amp;confirm_password=Letm3in_
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-2-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/account&#34; -e &#34;http://127.0.0.1:5000/account&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=change_password&amp;current_password=Letm3in_&amp;new_password=Letm3in_&amp;confirm_password=Letm3in_&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-2-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/3/reply</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-3-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-3-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-3-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-3-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-3-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-3-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/3/reply HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/3
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 106
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;ai_draft_id=default&amp;body=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-3-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/3/reply&#34; -e &#34;http://127.0.0.1:5000/tickets/3&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;ai_draft_id=default&amp;body=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-3-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/2/status</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-4-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-4-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-4-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-4-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-4-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-4-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/2/status HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/2
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 81
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;status=open
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-4-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/2/status&#34; -e &#34;http://127.0.0.1:5000/tickets/2&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;status=open&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-4-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/2/reply</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-5-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-5-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-5-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-5-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-5-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-5-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/2/reply HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/2
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 106
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;ai_draft_id=default&amp;body=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-5-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/2/reply&#34; -e &#34;http://127.0.0.1:5000/tickets/2&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;ai_draft_id=default&amp;body=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-5-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /account</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-6-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-6-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-6-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-6-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-6-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-6-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /account HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/account
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 91
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=generate_token
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-6-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/account&#34; -e &#34;http://127.0.0.1:5000/account&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=generate_token&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-6-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /account</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-7-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-7-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-7-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-7-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-7-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-7-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /account HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/account
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 89
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=revoke_token
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-7-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/account&#34; -e &#34;http://127.0.0.1:5000/account&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=revoke_token&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-7-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/1/status</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-8-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-8-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-8-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-8-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-8-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-8-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/1/status HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/1
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 88
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;status=in_progress
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-8-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/1/status&#34; -e &#34;http://127.0.0.1:5000/tickets/1&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;status=in_progress&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-8-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/3/assign</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-9-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-9-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-9-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-9-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-9-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-9-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/3/assign HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/3
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 83
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=assign
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-9-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/3/assign&#34; -e &#34;http://127.0.0.1:5000/tickets/3&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;action=assign&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-9-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/1/reply</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-10-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-10-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-10-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-10-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-10-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-10-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/1/reply HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/1
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 106
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;ai_draft_id=default&amp;body=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-10-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/1/reply&#34; -e &#34;http://127.0.0.1:5000/tickets/1&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;ai_draft_id=default&amp;body=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-10-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Anomaly found in /tickets/3/status</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-anom-0-11-1" class="tab-link active">Description</a>
+                            <a href="#tab-anom-0-11-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-anom-0-11-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-anom-0-11-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-anom-0-11-1" class="tab-content" style="min-height: 124px;">
+                            <pre>The server responded with a 500 HTTP error code while attempting to inject a payload in the parameter csrf_token</pre>
+                        </section>
+                        <section id="tab-anom-0-11-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    POST /tickets/3/status HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://127.0.0.1:5000/tickets/3
+                                    <br>
+                                    cookie: session=.eJztzcFqAjEQxvFXCXNOCxV6yXWRVrQi2wq2RcKSHd3FbbLMbCpWfPfmOeQ7Dcz8f8yV_GFotGMl930lM5VBmkNgVbJU8zhcjHKcHml_swgQIEBwFwGLJCnnz5TFhCxSAjM2quckrenV9DGksg1gYGBgYGBgYGBgYGBgYGBgYGB3w_aW_Mjy08SSkZsks6WgcvBTOnEkR_45h6rfyfJvvn17Oc5zXa8Xq24ni_j6Mfj3h65rvk7VZqi25av-knuylJXF9y252e0f6PRucg.at-jng.x6SDni4wWsWNS_6MZDJCxBlgiiU
+                                    <br>
+                                    content-length: 85
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;status=resolved
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-anom-0-11-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/3/status&#34; -e &#34;http://127.0.0.1:5000/tickets/3&#34; -d &#34;csrf_token=_5ucCiXrKzEUMGgEuRRNILhXrInHTl_S-hhaZkCPlCU%C2%BF%27%22%28&amp;status=resolved&#34;</pre>
+                        </section>
+                        <section id="tab-anom-0-11-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-ERRH-01&#39;]</pre>
+                        </section>
+                    </div>
+
+                <dl><dt>Solutions</dt><dd>More information about the error should be found in the server logs.</dd></dl>
+                <h5>References</h5>
+                <ul>
+                    <li><a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error">Wikipedia: List of 5xx HTTP status codes</a></li>
+                    <li><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/01-Testing_For_Improper_Error_Handling">OWASP: Improper Error Handling</a></li>
+                </ul>
+                <br />
+                <hr>
+                <h3 id="addition_type_2">HTTP Methods</h3>
+                <dl>
+                    <dt>Description</dt>
+                    <dd>While GET and POST are by far the most common methods that are used to access information provided by a web server, HTTP allows several other (and somewhat less known) methods. Some of these can be used for nefarious purposes if the web server is misconfigured.</dd>
+                </dl>
+
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-0-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-0-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-0-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-0-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-0-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/: OPTIONS (200)</pre>
+                        </section>
+                        <section id="tab-addition-2-0-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET / HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-0-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-0-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /account</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-1-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-1-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-1-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-1-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-1-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/account: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-1-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /account HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-1-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/account&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-1-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /static/app.js</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-2-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-2-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-2-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-2-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-2-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/static/app.js: OPTIONS (200)</pre>
+                        </section>
+                        <section id="tab-addition-2-2-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /static/app.js HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-2-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/static/app.js&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-2-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-3-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-3-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-3-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-3-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-3-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets: OPTIONS (200)</pre>
+                        </section>
+                        <section id="tab-addition-2-3-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-3-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-3-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/1</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-4-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-4-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-4-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-4-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-4-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/1: OPTIONS (200)</pre>
+                        </section>
+                        <section id="tab-addition-2-4-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/1 HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-4-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/1&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-4-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/1/assign</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-5-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-5-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-5-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-5-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-5-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/1/assign: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-5-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/1/assign HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-5-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/1/assign&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-5-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/1/reply</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-6-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-6-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-6-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-6-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-6-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/1/reply: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-6-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/1/reply HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-6-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/1/reply&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-6-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/1/status</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-7-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-7-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-7-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-7-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-7-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/1/status: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-7-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/1/status HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-7-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/1/status&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-7-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/2</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-8-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-8-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-8-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-8-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-8-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/2: OPTIONS (200)</pre>
+                        </section>
+                        <section id="tab-addition-2-8-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/2 HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-8-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/2&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-8-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/2/assign</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-9-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-9-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-9-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-9-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-9-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/2/assign: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-9-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/2/assign HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-9-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/2/assign&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-9-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/2/reply</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-10-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-10-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-10-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-10-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-10-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/2/reply: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-10-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/2/reply HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-10-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/2/reply&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-10-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/2/status</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-11-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-11-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-11-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-11-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-11-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/2/status: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-11-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/2/status HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-11-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/2/status&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-11-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/3</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-12-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-12-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-12-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-12-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-12-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/3: OPTIONS (200)</pre>
+                        </section>
+                        <section id="tab-addition-2-12-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/3 HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-12-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/3&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-12-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/3/assign</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-13-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-13-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-13-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-13-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-13-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/3/assign: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-13-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/3/assign HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-13-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/3/assign&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-13-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/3/reply</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-14-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-14-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-14-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-14-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-14-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/3/reply: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-14-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/3/reply HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-14-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/3/reply&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-14-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                    <div class="tab-container">
+                        <h4><span class="severity severity-info"></span> Additional found in /tickets/3/status</h4>
+                        <nav class="tab-nav">
+                            <a href="#tab-addition-2-15-1" class="tab-link active">Description</a>
+                            <a href="#tab-addition-2-15-2" class="tab-link">HTTP Request</a>
+                            <a href="#tab-addition-2-15-4" class="tab-link">cURL command line</a>
+                            <a href="#tab-addition-2-15-5" class="tab-link">WSTG Code</a>
+                        </nav>
+                        <section id="tab-addition-2-15-1" class="tab-content" style="min-height: 124px;">
+                            <pre>Possible interesting methods (using OPTIONS) on http://127.0.0.1:5000/tickets/3/status: OPTIONS (200) POST (400)</pre>
+                        </section>
+                        <section id="tab-addition-2-15-2" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre style="white-space: normal">
+                                    GET /tickets/3/status HTTP/1.1
+                                    <br>
+                                    host: 127.0.0.1:5000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:128.0) Gecko/20100101 Firefox/128.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: session=eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiXzV1Y0NpWHJLekVVTUdnRXVSUk5JTGhYckluSFRsX1MtaGhhWmtDUGxDVSIsInN2IjoxLCJ1c2VyX2lkIjoyfQ.at-jiw.TjJSPg3OS5RbbvDvEOlGY5rEZxs
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-addition-2-15-4" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>curl &#34;http://127.0.0.1:5000/tickets/3/status&#34;</pre>
+                        </section>
+                        <section id="tab-addition-2-15-5" class="tab-content" style="min-height: 124px; display: none;">
+                            <pre>[&#39;WSTG-CONF-06&#39;]</pre>
+                        </section>
+                    </div>
+                <dl><dt>Solutions</dt><dd>This is only for informational purposes.</dd></dl>
+                <h5>References</h5>
+                <ul>
+                    <li><a href="https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/06-Test_HTTP_Methods">OWASP: HTTP Methods</a></li>
+                </ul>
+                <br />
+                <hr>
+        </div>
+        <footer class="small" id="footer"><a href="https://wapiti-scanner.github.io/" id="wapiti_link">Wapiti 3.3.2</a> &copy; Nicolas SURRIBAS 2006-2026</footer>
+	</div>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

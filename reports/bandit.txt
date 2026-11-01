@@ -1,0 +1,235 @@
+Run started:2026-11-01 14:07:35.516728+00:00
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'Admin@1234'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: ./seed.py:19:17
+18	NOW = datetime.now(timezone.utc)
+19	ADMIN_PASSWORD = "Admin@1234"
+20	DEMO_PASSWORD = "Demo@1234"
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'Demo@1234'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: ./seed.py:20:16
+19	ADMIN_PASSWORD = "Admin@1234"
+20	DEMO_PASSWORD = "Demo@1234"
+21	ADMIN = ("Asha Kulkarni", "admin@example.test", "+91 90000 00001", "192.0.2.1")
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: helpdesk/admin.py:115:25
+114	    db = get_db()
+115	    total = db.execute(f"SELECT COUNT(*) FROM users u {where}", params).fetchone()[0]
+116	    page, pages = _paginate(total, page)
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: helpdesk/admin.py:118:12
+117	    rows = db.execute(
+118	        f"""SELECT u.id, u.name, u.email, u.phone, u.role, u.is_active, u.created_at, u.last_login_at,
+119	                   c.name AS company_name
+120	            FROM users u LEFT JOIN companies c ON c.id = u.company_id {where}
+121	            ORDER BY u.role = 'admin' DESC, c.name, u.role, u.name LIMIT ? OFFSET ?""",
+122	        params + [PER_PAGE, (page - 1) * PER_PAGE],
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b113_request_without_timeout.html
+   Location: helpdesk/ai.py:83:19
+82	    try:
+83	        response = requests.post(
+84	            cfg["GROQ_API_URL"],
+85	            json=payload,
+86	            headers={"Authorization": f"Bearer {api_key}"},
+87	            timeout=cfg["GROQ_TIMEOUT"],
+88	        )
+89	    except requests.Timeout:
+
+--------------------------------------------------
+>> Issue: [B106:hardcoded_password_funcarg] Possible hardcoded password: 'Bearer'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b106_hardcoded_password_funcarg.html
+   Location: helpdesk/api.py:119:11
+118	        token=token,
+119	        token_type="Bearer",
+120	        user={"name": user["name"], "email": user["email"], "role": user["role"]},
+121	        note="Store this token now. Requesting a new one replaces it.",
+122	    ), 201
+123	
+124	
+125	@bp.delete("/auth/token")
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'The two passwords don't match.'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: helpdesk/auth.py:37:19
+36	        if "password" not in errors and password != confirm:
+37	            errors["confirm_password"] = "The two passwords don't match."
+38	
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'The two passwords don't match.'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: helpdesk/auth.py:173:19
+172	        elif password != confirm:
+173	            errors["confirm_password"] = "The two passwords don't match."
+174	        if not errors:
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'Requested password reset'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: helpdesk/constants.py:16:4
+15	    "logout": "Signed out",
+16	    "password_reset_requested": "Requested password reset",
+17	    "password_reset": "Reset password",
+18	    "api_token_created": "Created API token",
+19	    "api_token_revoked": "Revoked API token",
+20	    "ticket_created": "Raised ticket",
+21	    "reply_added": "Replied on ticket",
+22	    "status_changed": "Changed ticket status",
+23	    "ticket_assigned": "Took ticket",
+24	    "ticket_unassigned": "Released ticket",
+25	    "attachment_downloaded": "Downloaded attachment",
+26	    "ai_draft_generated": "Generated AI draft",
+27	    "company_created": "Added company",
+28	    "agent_created": "Created agent account",
+29	    "user_deactivated": "Deactivated user",
+30	    "user_reactivated": "Reactivated user",
+31	}
+32	
+33	WARNING_ACTIONS = {"login_failed", "login_blocked", "user_deactivated"}
+34	
+35	# All timestamps are stored as UTC text in this format so they sort correctly.
+36	TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'Reset password'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: helpdesk/constants.py:17:4
+16	    "password_reset_requested": "Requested password reset",
+17	    "password_reset": "Reset password",
+18	    "api_token_created": "Created API token",
+19	    "api_token_revoked": "Revoked API token",
+20	    "ticket_created": "Raised ticket",
+21	    "reply_added": "Replied on ticket",
+22	    "status_changed": "Changed ticket status",
+23	    "ticket_assigned": "Took ticket",
+24	    "ticket_unassigned": "Released ticket",
+25	    "attachment_downloaded": "Downloaded attachment",
+26	    "ai_draft_generated": "Generated AI draft",
+27	    "company_created": "Added company",
+28	    "agent_created": "Created agent account",
+29	    "user_deactivated": "Deactivated user",
+30	    "user_reactivated": "Reactivated user",
+31	}
+32	
+33	WARNING_ACTIONS = {"login_failed", "login_blocked", "user_deactivated"}
+34	
+35	# All timestamps are stored as UTC text in this format so they sort correctly.
+36	TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'Created API token'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: helpdesk/constants.py:18:4
+17	    "password_reset": "Reset password",
+18	    "api_token_created": "Created API token",
+19	    "api_token_revoked": "Revoked API token",
+20	    "ticket_created": "Raised ticket",
+21	    "reply_added": "Replied on ticket",
+22	    "status_changed": "Changed ticket status",
+23	    "ticket_assigned": "Took ticket",
+24	    "ticket_unassigned": "Released ticket",
+25	    "attachment_downloaded": "Downloaded attachment",
+26	    "ai_draft_generated": "Generated AI draft",
+27	    "company_created": "Added company",
+28	    "agent_created": "Created agent account",
+29	    "user_deactivated": "Deactivated user",
+30	    "user_reactivated": "Reactivated user",
+31	}
+32	
+33	WARNING_ACTIONS = {"login_failed", "login_blocked", "user_deactivated"}
+34	
+35	# All timestamps are stored as UTC text in this format so they sort correctly.
+36	TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'Revoked API token'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: helpdesk/constants.py:19:4
+18	    "api_token_created": "Created API token",
+19	    "api_token_revoked": "Revoked API token",
+20	    "ticket_created": "Raised ticket",
+21	    "reply_added": "Replied on ticket",
+22	    "status_changed": "Changed ticket status",
+23	    "ticket_assigned": "Took ticket",
+24	    "ticket_unassigned": "Released ticket",
+25	    "attachment_downloaded": "Downloaded attachment",
+26	    "ai_draft_generated": "Generated AI draft",
+27	    "company_created": "Added company",
+28	    "agent_created": "Created agent account",
+29	    "user_deactivated": "Deactivated user",
+30	    "user_reactivated": "Reactivated user",
+31	}
+32	
+33	WARNING_ACTIONS = {"login_failed", "login_blocked", "user_deactivated"}
+34	
+35	# All timestamps are stored as UTC text in this format so they sort correctly.
+36	TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: helpdesk/services.py:154:8
+153	    row = get_db().execute(
+154	        "SELECT a.*, t.number AS ticket_number FROM attachments a JOIN tickets t ON t.id = a.ticket_id "
+155	        f"WHERE a.id = ? AND {' AND '.join(clauses)}",
+156	        [attachment_id] + params,
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 1737
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 9
+		Medium: 4
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 12
+		High: 0
+Files skipped (0):
