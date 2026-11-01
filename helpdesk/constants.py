@@ -34,3 +34,4 @@ WARNING_ACTIONS = {"login_failed", "login_blocked", "user_deactivated"}
 
 # All timestamps are stored as UTC text in this format so they sort correctly.
 TIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+

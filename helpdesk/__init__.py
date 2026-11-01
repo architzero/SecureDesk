@@ -76,3 +76,4 @@ def _register_error_handlers(app):
 
     for code in ERROR_TEXT:
         app.register_error_handler(code, handle)
+

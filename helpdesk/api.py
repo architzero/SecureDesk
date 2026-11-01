@@ -1,13 +1,14 @@
 """JSON REST API. Authenticate with a bearer token from POST /api/v1/auth/token."""
 import secrets
+from datetime import timedelta
 
-from flask import Blueprint, g, jsonify, request, url_for
+from flask import Blueprint, current_app, g, jsonify, request, url_for
 from werkzeug.security import check_password_hash
 
 from . import services
 from .constants import PRIORITIES, STATUSES
 from .db import get_db
-from .security import DUMMY_HASH, hash_token, log_activity, too_many_failed_logins
+from .security import DUMMY_HASH, hash_token, log_activity, now_iso, to_iso, too_many_failed_logins, utcnow
 from .services import ServiceError
 
 bp = Blueprint("api", __name__, url_prefix="/api/v1")
@@ -40,8 +41,9 @@ def authenticate():
         return error("Send your token in the header: Authorization: Bearer <token>.", 401)
     user = get_db().execute(
         "SELECT u.* FROM users u LEFT JOIN companies c ON c.id = u.company_id "
-        "WHERE u.api_token_hash = ? AND u.is_active = 1 AND (u.company_id IS NULL OR c.is_active = 1)",
-        (hash_token(token),),
+        "WHERE u.api_token_hash = ? AND u.is_active = 1 AND (u.company_id IS NULL OR c.is_active = 1) "
+        "AND (u.api_token_expires_at IS NULL OR u.api_token_expires_at > ?)",  # F11: reject expired tokens
+        (hash_token(token), now_iso()),
     ).fetchone()
     if user is None:
         return error("This token is invalid or has been revoked.", 401)
@@ -111,12 +113,15 @@ def create_token():
         return error("Email or password is incorrect, or the account is deactivated.", 401)
 
     token = "hd_" + secrets.token_urlsafe(32)
-    db.execute("UPDATE users SET api_token_hash = ? WHERE id = ?", (hash_token(token), user["id"]))
+    expires = to_iso(utcnow() + timedelta(days=current_app.config["API_TOKEN_DAYS"]))  # F11
+    db.execute("UPDATE users SET api_token_hash = ?, api_token_expires_at = ? WHERE id = ?",
+               (hash_token(token), expires, user["id"]))
     log_activity("api_token_created", user=user, target_type="user", target_id=user["id"], commit=False)
     db.commit()
     return jsonify(
         token=token,
         token_type="Bearer",
+        expires_at=expires,
         user={"name": user["name"], "email": user["email"], "role": user["role"]},
         note="Store this token now. Requesting a new one replaces it.",
     ), 201
@@ -189,3 +194,4 @@ def create_reply(number):
         return error('Send a JSON object like {"body": "Your reply"}.', 400)
     reply_id = services.add_reply(g.user, ticket, _s(data.get("body")))
     return jsonify(_reply(services.get_reply(reply_id))), 201
+

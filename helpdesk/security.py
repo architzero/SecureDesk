@@ -17,8 +17,8 @@ DUMMY_HASH = generate_password_hash(secrets.token_urlsafe(16))
 CSP = (
     "default-src 'self'; "
     "img-src 'self' data:; "
-    "style-src 'self' https://fonts.googleapis.com; "
-    "font-src 'self' https://fonts.gstatic.com; "
+    "style-src 'self'; "
+    "font-src 'self'; "
     "script-src 'self'; connect-src 'self'; "
     "form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
 )
@@ -51,6 +51,10 @@ def log_activity(action, user=None, target_type=None, target_id=None, details=No
                  company_id=None, commit=True):
     if company_id is None and user is not None:
         company_id = user["company_id"]
+    # F15: cap the free-text field so a huge value typed into a form (e.g. a
+    # password pasted into the email box) cannot bloat the log.
+    if details is not None:
+        details = str(details)[:254]
     db = get_db()
     db.execute(
         "INSERT INTO activity_log (user_id, company_id, action, target_type, target_id, details, ip_address, created_at) "
@@ -63,18 +67,37 @@ def log_activity(action, user=None, target_type=None, target_id=None, details=No
 
 
 def too_many_failed_logins(email):
-    """Simple brute-force guard that reads failed attempts from the activity log."""
+    """Brute-force guard keyed to the request IP (F8).
+
+    The old version also blocked by email alone, which let anyone lock out a
+    victim by typing wrong passwords for their email. Now the per-account limit
+    only counts failures from the SAME IP, so an attacker cannot lock a user who
+    signs in from a different network.
+    """
     since = to_iso(utcnow() - timedelta(minutes=15))
     db = get_db()
+    ip = client_ip()
     by_ip = db.execute(
         "SELECT COUNT(*) FROM activity_log WHERE action = 'login_failed' AND ip_address = ? AND created_at >= ?",
-        (client_ip(), since),
+        (ip, since),
     ).fetchone()[0]
-    by_email = db.execute(
-        "SELECT COUNT(*) FROM activity_log WHERE action = 'login_failed' AND details = ? AND created_at >= ?",
-        (email, since),
+    by_email_ip = db.execute(
+        "SELECT COUNT(*) FROM activity_log WHERE action = 'login_failed' AND details = ? AND ip_address = ? AND created_at >= ?",
+        (email, ip, since),
     ).fetchone()[0]
-    return by_ip >= 20 or by_email >= 8
+    return by_ip >= 20 or by_email_ip >= 8
+
+
+def too_many(action, limit, minutes=15):
+    """Generic per-IP rate limit over the activity log (F9).
+
+    Used to cap signup and password-reset requests from one IP.
+    """
+    since = to_iso(utcnow() - timedelta(minutes=minutes))
+    return get_db().execute(
+        "SELECT COUNT(*) FROM activity_log WHERE action = ? AND ip_address = ? AND created_at >= ?",
+        (action, client_ip(), since),
+    ).fetchone()[0] >= limit
 
 
 def csrf_token():
@@ -141,7 +164,9 @@ def _csrf_protect():
         return
     expected = session.get("_csrf_token")
     sent = request.headers.get("X-CSRFToken") or request.form.get("csrf_token", "")
-    if not expected or not hmac.compare_digest(str(sent), expected):
+    # F6: compare as bytes. compare_digest raises TypeError on non-ASCII str
+    # input, which turned a bad token into a 500 (and, in debug, the debugger).
+    if not expected or not hmac.compare_digest(str(sent).encode("utf-8"), str(expected).encode("utf-8")):
         abort(400, description="This form expired. Reload the page and try again.")
 
 
@@ -150,6 +175,10 @@ def _security_headers(response):
     response.headers.setdefault("X-Content-Type-Options", "nosniff")
     response.headers.setdefault("X-Frame-Options", "DENY")
     response.headers.setdefault("Referrer-Policy", "same-origin")
+    # F16: tell browsers to use HTTPS only (ignored on plain http, needed once served over TLS).
+    response.headers.setdefault("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+    # F26: don't advertise the exact Werkzeug/Python version.
+    response.headers["Server"] = "HelpDesk"
     if g.get("user") is not None and request.endpoint != "static":
         response.headers["Cache-Control"] = "no-store"
     return response
@@ -159,3 +188,4 @@ def init_app(app):
     app.before_request(_load_user)
     app.before_request(_csrf_protect)
     app.after_request(_security_headers)
+

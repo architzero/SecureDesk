@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS users (
     is_active       INTEGER NOT NULL DEFAULT 1,
     session_epoch   INTEGER NOT NULL DEFAULT 0,
     api_token_hash  TEXT    UNIQUE,
+    api_token_expires_at TEXT,          -- F11: API tokens now expire
     created_at      TEXT    NOT NULL,
     last_login_at   TEXT,
     CHECK ((role = 'admin' AND company_id IS NULL) OR (role <> 'admin' AND company_id IS NOT NULL))
@@ -96,3 +97,4 @@ CREATE TABLE IF NOT EXISTS activity_log (
 );
 CREATE INDEX IF NOT EXISTS idx_activity_created ON activity_log(created_at);
 CREATE INDEX IF NOT EXISTS idx_activity_action ON activity_log(action, created_at);
+

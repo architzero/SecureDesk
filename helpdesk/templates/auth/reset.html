@@ -5,10 +5,10 @@
 <div class="stub">
   <div class="stub-head">
     <a class="brand" href="{{ url_for('auth.login') }}">{% include "_logo.svg" %}HelpDesk</a>
-    <h1>{{ 'Link expired' if invalid else 'Choose a new password' }}</h1>
+    <h1>{{ 'Link expired' if expired else 'Choose a new password' }}</h1>
   </div>
   <div class="stub-cut" aria-hidden="true"></div>
-  {% if invalid %}
+  {% if expired %}
   <div class="stub-body stack">
     <p>This reset link has expired or was already used. Request a new one to continue.</p>
     <a class="btn btn-primary btn-block" href="{{ url_for('auth.forgot_password') }}">Request a new link</a>
@@ -31,3 +31,4 @@
   {% endif %}
 </div>
 {% endblock %}
+

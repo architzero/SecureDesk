@@ -1,8 +1,18 @@
 import re
 
-EMAIL_RE = re.compile(r"^[^@\s]{1,64}@[^@\s]{1,190}\.[A-Za-z]{2,24}$")
+# F18: only ordinary email characters, so values like "x@y.com?subject=..&body=.."
+# can't pass validation and later become a pre-filled mailto link.
+EMAIL_RE = re.compile(r"^[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9.-]{1,190}\.[A-Za-z]{2,24}$")
 PHONE_RE = re.compile(r"^\+?[0-9][0-9 ()\-]{5,18}[0-9]$")
 CODE_RE = re.compile(r"^[A-Z0-9][A-Z0-9-]{2,18}[A-Z0-9]$")
+
+# F10: a small blocklist of the most common weak passwords. A production app
+# would check a breached-password corpus (e.g. HaveIBeenPwned) instead.
+COMMON_PASSWORDS = {
+    "password", "password1", "password123", "12345678", "123456789", "1234567890",
+    "qwerty123", "qwertyuiop", "admin123", "welcome1", "letmein123", "iloveyou1",
+    "abc12345", "password@123", "changeme123",
+}
 
 
 def escape_like(term):
@@ -30,10 +40,15 @@ def check_phone(phone, required=True):
 
 
 def check_password(password):
-    if len(password) < 8:
-        return "Use at least 8 characters."
+    # F10: NIST SP 800-63B Rev 4 asks for at least a 15-character minimum when
+    # a password is the only factor; 12 is used here as a lab-practical minimum.
+    if len(password) < 12:
+        return "Use at least 12 characters."
     if len(password) > 128:
         return "Use 128 characters or fewer."
     if not re.search(r"[A-Za-z]", password) or not re.search(r"\d", password):
         return "Include at least one letter and one number."
+    if password.lower() in COMMON_PASSWORDS:
+        return "This password is too common. Choose a less predictable one."
     return None
+

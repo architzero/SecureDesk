@@ -1,10 +1,30 @@
 """Drafts agent replies with Groq's OpenAI-compatible chat API."""
+import re
+
 import requests
 from flask import current_app
 
 from .constants import STATUS_LABELS
 
 MAX_CONVERSATION_CHARS = 12000
+
+# F7: defang anything a customer can type that would blur the line between
+# ticket content and the app's own structure (fake </ticket> tags, forged
+# "[Agent, ...]" turns).
+_TAG_RE = re.compile(r"</?\s*ticket[^>]*>", re.IGNORECASE)
+_SPEAKER_RE = re.compile(r"^\s*\[\s*(?:agent|customer)\b[^\]]*\]", re.IGNORECASE | re.MULTILINE)
+# F12: mask direct identifiers before the text leaves the system for Groq.
+_EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+_PHONE_RE = re.compile(r"\+?\d[\d ()\-]{7,}\d")
+
+
+def _clean(text):
+    text = text or ""
+    text = _TAG_RE.sub("(ticket)", text)
+    text = _SPEAKER_RE.sub("(quoted line)", text)
+    text = _EMAIL_RE.sub("[email removed]", text)
+    text = _PHONE_RE.sub("[number removed]", text)
+    return text
 
 SYSTEM_PROMPT = """You draft replies for support agents at {company}. The agent, {agent}, will review and edit your draft before it reaches the customer.
 
@@ -35,11 +55,11 @@ def build_conversation(ticket, replies):
         f"Status: {STATUS_LABELS.get(ticket['status'], ticket['status'])}.\n"
         f"Customer's first name: {customer}\n"
     )
-    opening = f"[Customer, {customer}]\n{ticket['description']}"
+    opening = f"[Customer, {customer}]\n{_clean(ticket['description'])}"
     messages = []
     for reply in replies:
         who = f"Customer, {customer}" if reply["author_role"] == "customer" else f"Agent, {_first(reply['author_name'])}"
-        messages.append(f"[{who}]\n{reply['body']}")
+        messages.append(f"[{who}]\n{_clean(reply['body'])}")
 
     # Keep the newest messages when the conversation is long.
     budget = MAX_CONVERSATION_CHARS - len(header) - len(opening)
@@ -114,3 +134,4 @@ def draft_reply(company_name, agent_name, ticket, replies):
     if not content:
         raise AIError("Groq returned an empty draft. Try again.")
     return content[:5000], model
+

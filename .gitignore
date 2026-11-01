@@ -3,3 +3,9 @@ __pycache__/
 *.pyc
 .env
 instance/
+
+
+reports/
+helpdesk-full-code.txt
+helpdesk_v0_to_v1.patch
+*Zone.Identifier

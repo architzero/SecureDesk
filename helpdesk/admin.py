@@ -78,7 +78,7 @@ def create_company():
     if not code:
         prefix = "".join(ch for ch in name.upper() if ch.isascii() and ch.isalnum())[:4] or "CO"
         while True:
-            code = f"{prefix}-" + "".join(secrets.choice(CODE_ALPHABET) for _ in range(4))
+            code = f"{prefix}-" + "".join(secrets.choice(CODE_ALPHABET) for _ in range(10))  # F3: 10 random chars
             if not db.execute("SELECT 1 FROM companies WHERE code = ?", (code,)).fetchone():
                 break
 
@@ -236,3 +236,4 @@ def activity():
     return render_template("admin/activity.html", entries=rows, companies=_companies(),
                            filters={"action": action, "company": company_id, "q": q},
                            page=page, pages=pages, total=total)
+

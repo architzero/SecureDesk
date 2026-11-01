@@ -218,3 +218,4 @@ flask --app helpdesk create-admin
 - This setup is for running on your laptop. To put it online, run it with a production server
   such as gunicorn behind HTTPS, set `SESSION_COOKIE_SECURE=1`, and add werkzeug's `ProxyFix`
   so the activity log records real client IPs.
+

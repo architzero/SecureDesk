@@ -157,3 +157,4 @@ def download(attachment_id):
                  details=f"#{attachment['ticket_number']} {attachment['original_name']}")
     return send_from_directory(current_app.config["UPLOAD_FOLDER"], attachment["stored_name"],
                                as_attachment=True, download_name=attachment["original_name"])
+

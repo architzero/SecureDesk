@@ -82,3 +82,4 @@ def init_app(app):
         UPLOAD_TYPES_TEXT=", ".join(ext.upper() for ext in extensions),
         groq_enabled=bool(app.config.get("GROQ_API_KEY")),
     )
+

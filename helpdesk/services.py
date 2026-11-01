@@ -183,6 +183,30 @@ def _extension(filename):
     return os.path.splitext(filename or "")[1].lower().lstrip(".")
 
 
+# F13: magic-byte signatures, so the real file type must match its extension.
+# Text types (txt, log, csv) have no signature and are accepted as-is.
+_MAGIC = {
+    "png": (b"\x89PNG\r\n\x1a\n",),
+    "gif": (b"GIF87a", b"GIF89a"),
+    "jpg": (b"\xff\xd8\xff",),
+    "jpeg": (b"\xff\xd8\xff",),
+    "pdf": (b"%PDF-",),
+    "docx": (b"PK\x03\x04",),
+    "xlsx": (b"PK\x03\x04",),
+}
+_TEXT_EXTS = {"txt", "log", "csv"}
+
+
+def _content_matches(path, ext):
+    if ext in _TEXT_EXTS:
+        return True
+    with open(path, "rb") as handle:
+        head = handle.read(16)
+    if ext == "webp":
+        return head[:4] == b"RIFF" and head[8:12] == b"WEBP"
+    return any(head.startswith(sig) for sig in _MAGIC.get(ext, ()))
+
+
 def _store_upload(upload):
     ext = _extension(upload.filename)
     original = secure_filename(upload.filename) or ""
@@ -196,6 +220,11 @@ def _store_upload(upload):
     if size == 0 or size > max_mb * 1024 * 1024:
         os.remove(path)
         message = "The attached file is empty." if size == 0 else f"Files can be up to {max_mb} MB."
+        raise ServiceError(message, 400, {"attachment": message})
+    # F13: reject a file whose real content doesn't match its extension.
+    if not _content_matches(path, ext):
+        os.remove(path)
+        message = "This file's contents don't match its type."
         raise ServiceError(message, 400, {"attachment": message})
     return {
         "original_name": original[:200],
@@ -348,3 +377,4 @@ def generate_ai_draft(user, ticket):
                  details=f"#{ticket['number']}", commit=False)
     db.commit()
     return {"id": cur.lastrowid, "text": text, "model": model}
+
